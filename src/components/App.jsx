@@ -1,18 +1,28 @@
 import React from 'react';
-import Form from './form/Form';
-import Filter from './filter/Filter';
-import ContactList from './contactList/ContactList';
+import AppBar from './appBar/AppBar';
+
+//todo
+import Contacts from './contacts/Contacts';
+import Register from './register/Register';
+import Login from './login/Login';
+import NotFound from './notFound/NotFound';
+
+// *
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
   return (
-    <div>
-      <h1>Phonebook</h1>
-      <Form />
+    <>
+      <Routes>
+        <Route path="/" element={<AppBar />}>
+          <Route index element={<Contacts />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
 
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
-    </div>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 

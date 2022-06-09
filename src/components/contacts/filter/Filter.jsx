@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { filtration } from '../../redux/actions/contacts-actions';
+import { filtration } from '../../../redux/actions/contacts-actions';
 import styles from './Filter.module.css';
 
 const Filter = () => {
@@ -8,7 +8,6 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   const inputHandler = e => {
-    console.log(e.currentTarget.value);
     dispatch(filtration(e.currentTarget.value));
   };
 
