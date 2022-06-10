@@ -9,6 +9,7 @@ import {
 } from 'redux-persist';
 import { contactsApi } from './operations/contacts-operation';
 import filter from './reducers/contacts-reducer';
+import profile from './reducers/profile-reducer';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -22,6 +23,7 @@ const middleware = [
 export const store = configureStore({
   reducer: {
     filter: filter,
+    profile: profile,
     [contactsApi.reducerPath]: contactsApi.reducer,
   },
   middleware: middleware,

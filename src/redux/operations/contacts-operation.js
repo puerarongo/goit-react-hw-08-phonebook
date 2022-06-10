@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-//axios.defaults.baseURL = 'https://629734048d77ad6f75fd043c.mockapi.io/api/v1';
-
 const BASE_URL = 'https://629734048d77ad6f75fd043c.mockapi.io/api/v1/';
 
 export const contactsApi = createApi({

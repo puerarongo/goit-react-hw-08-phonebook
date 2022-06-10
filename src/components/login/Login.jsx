@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { profileLogin } from 'redux/operations/profile-operation';
 import styles from '../contacts/form/Form.module.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   // todo func
   const inputHandler = e => {
@@ -21,11 +25,13 @@ const Login = () => {
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log(email, password);
+    const user = { email: email, password: password };
 
+    dispatch(profileLogin(user));
     setEmail('');
     setPassword('');
   };
+
   return (
     <div className={styles.container}>
       <form onSubmit={submitHandler}>

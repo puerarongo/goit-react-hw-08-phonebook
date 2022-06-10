@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { profileRegistration } from 'redux/operations/profile-operation';
 import styles from '../contacts/form/Form.module.css';
 
 const Register = () => {
   const [profileName, setProfileName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   // todo func
   const inputHandler = e => {
@@ -24,7 +28,9 @@ const Register = () => {
 
   const submitHandler = e => {
     e.preventDefault();
-    console.log(profileName, email, password);
+    const user = { name: profileName, email: email, password: password };
+
+    dispatch(profileRegistration(user));
     setProfileName('');
     setEmail('');
     setPassword('');
