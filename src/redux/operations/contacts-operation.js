@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import axiosBaseQuery from 'services/axiosBaseQuery';
 import BASE_URL from 'services/baseURL';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
-  baseQuery: fetchBaseQuery({
+  baseQuery: axiosBaseQuery({
     baseUrl: BASE_URL,
   }),
   tagTypes: ['Contacts'],

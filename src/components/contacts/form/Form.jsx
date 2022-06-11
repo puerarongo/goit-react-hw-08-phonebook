@@ -8,7 +8,7 @@ import styles from './Form.module.css';
 
 const Form = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const { data } = useGetContactsQuery();
   const [addContact] = useAddContactMutation();
 
@@ -19,8 +19,8 @@ const Form = () => {
     switch (name) {
       case 'name':
         return setName(value);
-      case 'phone':
-        return setPhone(value);
+      case 'number':
+        return setNumber(value);
       default:
         return;
     }
@@ -28,20 +28,23 @@ const Form = () => {
 
   const submitHandler = e => {
     e.preventDefault();
-    const contact = { name: name, phone: phone };
+    //const contact = { name, number};
 
-    const newArr = data.map(({ name }) => name.toLowerCase());
-    if (newArr.includes(name.toLowerCase())) {
-      return Report.failure(
-        'Failure',
-        `${name} is already in contacts!`,
-        'Try again'
-      );
+    if (data) {
+      const newArr = data.map(({ name }) => name.toLowerCase());
+      if (newArr.includes(name.toLowerCase())) {
+        return Report.failure(
+          'Failure',
+          `${name} is already in contacts!`,
+          'Try again'
+        );
+      }
     }
 
-    addContact(contact);
+    addContact({ name, number });
+    console.log('Data ', data);
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -65,8 +68,8 @@ const Form = () => {
           <input
             className={styles.input__form}
             type="tel"
-            name="phone"
-            value={phone}
+            name="number"
+            value={number}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             onChange={inputHandler}
