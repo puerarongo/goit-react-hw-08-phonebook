@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const BASE_URL = 'https://629734048d77ad6f75fd043c.mockapi.io/api/v1/';
+import BASE_URL from 'services/baseURL';
 
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
@@ -10,15 +9,15 @@ export const contactsApi = createApi({
   tagTypes: ['Contacts'],
   endpoints: builder => ({
     getContacts: builder.query({
-      query: () => 'contacts',
+      query: () => '/contacts',
       providesTags: ['Contacts'],
     }),
 
     addContact: builder.mutation({
-      query: ({ name, phone }) => ({
+      query: ({ name, number }) => ({
         url: '/contacts',
         method: 'POST',
-        body: { name, phone },
+        body: { name, number },
       }),
       invalidatesTags: ['Contacts'],
     }),
@@ -38,38 +37,3 @@ export const {
   useAddContactMutation,
   useDeleteContactMutation,
 } = contactsApi;
-
-// ? Vanilla methods
-//export const contactsFetch = () => async dispatch => {
-//  dispatch(fetchContactsPadding());
-//
-//  try {
-//    const request = await axios.get('/contacts');
-//    dispatch(fetchContactsSuccess(request.data));
-//  } catch (error) {
-//    dispatch(fetchContactsError(error));
-//  }
-//};
-
-//export const contactAdd = (name, number) => async dispatch => {
-//  const contact = { id: nanoid(), name: name, phone: number };
-//  dispatch(addContactPadding());
-//
-//  try {
-//    const request = await axios.post('/contacts', contact);
-//    dispatch(addContactSuccess(request.data));
-//  } catch (error) {
-//    dispatch(addContactError(error));
-//  }
-//};
-
-//export const contactDelete = id => async dispatch => {
-//  dispatch(deleteContactPadding());
-//
-//  try {
-//    await axios.delete(`/contacts/${id}`);
-//    dispatch(deleteContactSuccess(id));
-//  } catch (error) {
-//    dispatch(deleteContactError(error));
-//  }
-//};

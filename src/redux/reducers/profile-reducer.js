@@ -22,7 +22,11 @@ const profile = createReducer(initialState, {
     state.token = payload.token;
     state.isLoggedIn = true;
   },
-  [profileLogout.fulfilled]: (state, { payload }) => {},
+  [profileLogout.fulfilled]: (state, { payload }) => {
+    state.user = { name: null, email: null };
+    state.token = null;
+    state.isLoggedIn = false;
+  },
 });
 
 export default profile;
