@@ -7,9 +7,6 @@ const Filter = () => {
   const filterContact = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
-  const a = useSelector(state => state);
-  console.log('State ', a);
-
   const inputHandler = e => {
     dispatch(filtration(e.currentTarget.value));
   };
