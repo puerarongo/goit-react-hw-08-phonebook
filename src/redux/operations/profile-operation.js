@@ -48,3 +48,22 @@ export const profileLogout = createAsyncThunk(
     }
   }
 );
+
+export const profileCurrent = createAsyncThunk(
+  'profile/profileCurrent',
+  async (_, thunkAPI) => {
+    const currentState = thunkAPI.getState();
+    const token = currentState.profile.token;
+    if (token === null) {
+      return thunkAPI.rejectWithValue();
+    } else {
+      axiosToken.set(token);
+      try {
+        const response = await axios.get('/users/current');
+        return response.data;
+      } catch (error) {
+        console.log('ERROR: ', error.message);
+      }
+    }
+  }
+);

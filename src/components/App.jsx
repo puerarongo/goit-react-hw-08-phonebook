@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AppBar from './appBar/AppBar';
 
 //todo
@@ -9,8 +9,16 @@ import NotFound from './notFound/NotFound';
 
 // *
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { profileCurrent } from 'redux/operations/profile-operation';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(profileCurrent());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>
