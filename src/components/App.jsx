@@ -1,19 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { profileCurrent } from 'redux/operations/profile-operation';
 import AppBar from './appBar/AppBar';
+import Loader from './loader/Loader';
+import PrivateRoute from './private&public/PrivateRoute';
+import PublicRoute from './private&public/PublicRoute';
 
 //todo
-import Contacts from './contacts/Contacts';
-import Register from './register/Register';
-import Login from './login/Login';
-import NotFound from './notFound/NotFound';
+const Contacts = lazy(() => import('./contacts/Contacts'));
+const Register = lazy(() => import('./register/Register'));
+const Login = lazy(() => import('./login/Login'));
+const NotFound = lazy(() => import('./notFound/NotFound'));
 
 // *
-import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { profileCurrent } from 'redux/operations/profile-operation';
-
 const App = () => {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(state => state.profile.isRefreshing);
 
   useEffect(() => {
     dispatch(profileCurrent());
@@ -21,15 +24,30 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<AppBar />}>
-          <Route index element={<Contacts />} />
-          <Route path="register" element={<Register />} />
-          <Route path="login" element={<Login />} />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<AppBar />}>
+            {!isRefreshing && (
+              <>
+                <Route
+                  index
+                  element={
+                    <PrivateRoute>
+                      <Contacts />
+                    </PrivateRoute>
+                  }
+                />
+                <Route element={<PublicRoute />}>
+                  <Route path="register" element={<Register />} />
+                  <Route path="login" element={<Login />} />
+                </Route>
 
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+                <Route path="*" element={<NotFound />} />
+              </>
+            )}
+          </Route>
+        </Routes>
+      </Suspense>
     </>
   );
 };

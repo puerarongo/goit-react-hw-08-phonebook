@@ -6,7 +6,6 @@ import styles from './UserMenu.module.css';
 const UserMenu = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.profile.user.name);
-  console.log(user);
 
   return (
     <div className={styles.container}>

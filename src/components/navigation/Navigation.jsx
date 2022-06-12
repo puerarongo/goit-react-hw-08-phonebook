@@ -6,14 +6,16 @@ import styles from './Navigation.module.css';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(state => state.profile.isLoggedIn);
-  console.log(isLoggedIn);
 
   return (
     <header className={styles.nav}>
-      <NavLink to="/">Contacts</NavLink>
-
       {isLoggedIn ? (
-        <UserMenu />
+        <>
+          <NavLink to="/">Contacts</NavLink>
+          <div className={styles.singin}>
+            <UserMenu />
+          </div>
+        </>
       ) : (
         <div className={styles.singin}>
           <NavLink className={styles.register} to="register">

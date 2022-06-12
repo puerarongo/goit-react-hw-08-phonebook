@@ -12,8 +12,6 @@ const ContactList = () => {
   const [deleteContact] = useDeleteContactMutation();
   const filterContact = useSelector(state => state.filter);
 
-  console.log('Data ', data);
-
   const filtredContacts = () => {
     return data.filter(({ name }) =>
       name.toLowerCase().includes(filterContact.toLowerCase())
