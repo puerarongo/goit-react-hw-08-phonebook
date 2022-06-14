@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Loader from 'components/loader/Loader';
 import {
   useGetContactsQuery,
@@ -8,9 +8,13 @@ import { useSelector } from 'react-redux';
 import styles from './ContactList.module.css';
 
 const ContactList = () => {
-  const { isLoading, data } = useGetContactsQuery();
+  const { isLoading, data, refetch } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
   const filterContact = useSelector(state => state.filter);
+
+  useEffect(() => {
+    return refetch();
+  });
 
   const filtredContacts = () => {
     return data.filter(({ name }) =>
@@ -25,11 +29,11 @@ const ContactList = () => {
           <Loader />
         ) : (
           data &&
-          filtredContacts().map(({ id, name, phone }) => {
+          filtredContacts().map(({ id, name, number }) => {
             return (
               <li key={id} className={styles.contact}>
                 <span>
-                  {name}: {phone}
+                  {name}: {number}
                 </span>
                 <button
                   className={styles.button__delete}
