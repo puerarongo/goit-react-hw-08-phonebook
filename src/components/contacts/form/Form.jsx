@@ -28,7 +28,8 @@ const Form = () => {
 
   const submitHandler = e => {
     e.preventDefault();
-    //const contact = { name, number};
+    const contact = { name: name, number: number };
+    console.log(contact);
 
     if (data) {
       const newArr = data.map(({ name }) => name.toLowerCase());
@@ -41,8 +42,7 @@ const Form = () => {
       }
     }
 
-    addContact({ name, number });
-    console.log('Data ', data);
+    addContact(contact);
     setName('');
     setNumber('');
   };
