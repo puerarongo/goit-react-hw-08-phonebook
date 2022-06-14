@@ -29,7 +29,6 @@ const Form = () => {
   const submitHandler = e => {
     e.preventDefault();
     const contact = { name: name, number: number };
-    console.log(contact);
 
     if (data) {
       const newArr = data.map(({ name }) => name.toLowerCase());

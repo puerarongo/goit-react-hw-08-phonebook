@@ -13,8 +13,8 @@ const ContactList = () => {
   const filterContact = useSelector(state => state.filter);
 
   useEffect(() => {
-    return refetch();
-  });
+    refetch();
+  }, [refetch]);
 
   const filtredContacts = () => {
     return data.filter(({ name }) =>

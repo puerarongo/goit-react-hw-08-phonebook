@@ -28,6 +28,7 @@ const Login = () => {
     const user = { email: email, password: password };
 
     dispatch(profileLogin(user));
+
     setEmail('');
     setPassword('');
   };
