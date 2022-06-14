@@ -1,5 +1,4 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-//fetchBaseQuery
 import axiosBaseQuery from 'services/axiosBaseQuery';
 import BASE_URL from 'services/baseURL';
 
