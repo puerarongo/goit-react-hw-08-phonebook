@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { filtration } from '../../../redux/actions/contacts-actions';
+import Form from 'react-bootstrap/Form';
 import styles from './Filter.module.css';
 
 const Filter = () => {
@@ -13,16 +14,16 @@ const Filter = () => {
 
   return (
     <div className={styles.container}>
-      <label>
+      <Form.Label>
         Find contacts by name:
-        <input
+        <Form.Control
           className={styles.form__input}
           type="text"
           name="filter"
           value={filterContact}
           onChange={inputHandler}
-        ></input>
-      </label>
+        ></Form.Control>
+      </Form.Label>
     </div>
   );
 };

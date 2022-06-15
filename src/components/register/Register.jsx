@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { profileRegistration } from 'redux/operations/profile-operation';
-import styles from '../contacts/form/Form.module.css';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import styles from '../contacts/formContacts/FormContacts.module.css';
 
 const Register = () => {
   const [profileName, setProfileName] = useState('');
@@ -40,44 +43,44 @@ const Register = () => {
     <>
       <h1>User registration</h1>
       <div className={styles.container}>
-        <form onSubmit={submitHandler}>
-          <label className={styles.form__title}>
+        <Form onSubmit={submitHandler}>
+          <Form.Label className={styles.form__title}>
             Profile Name
-            <input
-              className={styles.input__form}
+            <Form.Control
               type="text"
               name="profileName"
               value={profileName}
               onChange={inputHandler}
               required
             />
-          </label>
-          <label className={styles.form__title}>
+          </Form.Label>
+          <Form.Label className={styles.form__title}>
             Email
-            <input
-              className={styles.input__form}
-              type="email"
-              name="email"
-              value={email}
-              onChange={inputHandler}
-              required
-            />
-          </label>
-          <label className={styles.form__title}>
+            <InputGroup>
+              <InputGroup.Text>@</InputGroup.Text>
+              <Form.Control
+                type="email"
+                name="email"
+                value={email}
+                onChange={inputHandler}
+                required
+              />
+            </InputGroup>
+          </Form.Label>
+          <Form.Label className={styles.form__title}>
             Password
-            <input
-              className={styles.input__form}
+            <Form.Control
               type="password"
               name="password"
               value={password}
               onChange={inputHandler}
               required
             />
-          </label>
-          <button className={styles.form__button} type="sumbmit">
-            Click to Register
-          </button>
-        </form>
+          </Form.Label>
+          <Button className={styles.button} type="sumbmit">
+            Click to Registration
+          </Button>
+        </Form>
       </div>
     </>
   );

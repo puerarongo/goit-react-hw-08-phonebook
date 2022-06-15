@@ -4,9 +4,11 @@ import {
   useAddContactMutation,
 } from 'redux/operations/contacts-operation';
 import { Report } from 'notiflix/build/notiflix-report-aio';
-import styles from './Form.module.css';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import styles from './FormContacts.module.css';
 
-const Form = () => {
+const FormContacts = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const { data } = useGetContactsQuery();
@@ -48,11 +50,10 @@ const Form = () => {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={submitHandler}>
-        <label className={styles.form__title}>
+      <Form onSubmit={submitHandler}>
+        <Form.Label className={styles.form__title}>
           Name
-          <input
-            className={styles.input__form}
+          <Form.Control
             type="text"
             name="name"
             value={name}
@@ -61,11 +62,10 @@ const Form = () => {
             onChange={inputHandler}
             required
           />
-        </label>
-        <label className={styles.form__title}>
+        </Form.Label>
+        <Form.Label className={styles.form__title}>
           Number
-          <input
-            className={styles.input__form}
+          <Form.Control
             type="tel"
             name="number"
             value={number}
@@ -74,13 +74,13 @@ const Form = () => {
             onChange={inputHandler}
             required
           />
-        </label>
-        <button className={styles.form__button} type="sumbmit">
+        </Form.Label>
+        <Button className={styles.button} type="sumbmit">
           Add contact
-        </button>
-      </form>
+        </Button>
+      </Form>
     </div>
   );
 };
 
-export default Form;
+export default FormContacts;

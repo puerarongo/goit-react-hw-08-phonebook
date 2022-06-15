@@ -5,6 +5,7 @@ import {
   useDeleteContactMutation,
 } from 'redux/operations/contacts-operation';
 import { useSelector } from 'react-redux';
+import Button from 'react-bootstrap/Button';
 import styles from './ContactList.module.css';
 
 const ContactList = () => {
@@ -31,13 +32,14 @@ const ContactList = () => {
                 <span>
                   {name}: {number}
                 </span>
-                <button
+                <Button
+                  variant="outline-danger"
                   className={styles.button__delete}
                   type="button"
                   onClick={() => deleteContact(id)}
                 >
                   Delete
-                </button>
+                </Button>
               </li>
             );
           })

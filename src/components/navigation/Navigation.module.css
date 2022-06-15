@@ -3,7 +3,7 @@
   padding: 30px;
   font-size: 24px;
   font-weight: 700;
-  background-color: rgb(212, 212, 212);
+  background-color: rgb(212, 16, 16);
   border-bottom: 1px solid rgba(75, 75, 75, 30%);
   box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 
@@ -16,6 +16,8 @@
 
 .register {
   margin-right: 30px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 .link:not(:last-child),
@@ -24,12 +26,11 @@
 }
 
 .link {
-  color: rgb(255, 124, 16);
-  cursor: pointer;
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 
-.active__link {
+.register:hover,
+.link:hover {
   color: rgb(0, 0, 0);
-  cursor: pointer;
 }

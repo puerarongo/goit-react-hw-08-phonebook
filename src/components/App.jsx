@@ -6,6 +6,7 @@ import AppBar from './appBar/AppBar';
 import Loader from './loader/Loader';
 import PrivateRoute from './private&public/PrivateRoute';
 import PublicRoute from './private&public/PublicRoute';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 //todo
 const Contacts = lazy(() => import('./contacts/Contacts'));

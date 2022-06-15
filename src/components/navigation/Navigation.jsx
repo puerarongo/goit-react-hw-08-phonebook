@@ -11,7 +11,9 @@ const Navigation = () => {
     <header className={styles.nav}>
       {isLoggedIn ? (
         <>
-          <NavLink to="/">Contacts</NavLink>
+          <NavLink className={styles.link} to="/">
+            Contacts
+          </NavLink>
           <div className={styles.singin}>
             <UserMenu />
           </div>
@@ -21,7 +23,9 @@ const Navigation = () => {
           <NavLink className={styles.register} to="register">
             Register
           </NavLink>
-          <NavLink to="login">Login</NavLink>
+          <NavLink className={styles.link} to="login">
+            Login
+          </NavLink>
         </div>
       )}
     </header>
