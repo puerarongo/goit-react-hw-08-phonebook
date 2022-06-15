@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import BASE_URL from 'services/baseURL';
 import axiosToken from 'services/axiosToken';
 
@@ -33,6 +35,11 @@ export const profileLogin = createAsyncThunk(
       return request.data;
     } catch (error) {
       console.log('ERROR: ', error.message);
+      Report.warning(
+        'Error Login',
+        'The entered password or email is incorrect',
+        'OK'
+      );
     }
   }
 );
@@ -63,6 +70,7 @@ export const profileCurrent = createAsyncThunk(
         return response.data;
       } catch (error) {
         console.log('ERROR: ', error.message);
+        Notify.failure(`${error.message}`);
         await axios.post('/users/logout');
         axiosToken.unset();
       }
