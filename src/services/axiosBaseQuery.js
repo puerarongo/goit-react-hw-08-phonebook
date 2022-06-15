@@ -2,14 +2,12 @@ import axios from 'axios';
 
 const axiosBaseQuery =
   ({ baseUrl } = { baseUrl: '' }) =>
-  async ({ url = '/contacts', method, body, params }) => {
+  async ({ url = '/contacts', method, body }) => {
+    if (method === 'POST') {
+      await axios.post(url, body);
+    }
     try {
-      let result;
-      if (method === 'POST') {
-        result = await axios.post(url, body);
-      } else {
-        result = await axios({ url: baseUrl + url, method, body, params });
-      }
+      const result = await axios({ url: `${baseUrl}${url}`, method, body });
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError;

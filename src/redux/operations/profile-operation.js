@@ -54,6 +54,7 @@ export const profileCurrent = createAsyncThunk(
   async (_, thunkAPI) => {
     const currentState = thunkAPI.getState();
     const token = currentState.profile.token;
+    console.log(token);
     if (token === null) {
       return thunkAPI.rejectWithValue();
     } else {
@@ -63,6 +64,9 @@ export const profileCurrent = createAsyncThunk(
         return response.data;
       } catch (error) {
         console.log('ERROR: ', error.message);
+        // ***
+        await axios.post('/users/logout');
+        axiosToken.unset();
       }
     }
   }
