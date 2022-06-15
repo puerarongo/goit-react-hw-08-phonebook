@@ -6,7 +6,6 @@ import styles from '../contacts/form/Form.module.css';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const dispatch = useDispatch();
 
   // todo func

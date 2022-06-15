@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Loader from 'components/loader/Loader';
 import {
   useGetContactsQuery,
@@ -8,13 +8,9 @@ import { useSelector } from 'react-redux';
 import styles from './ContactList.module.css';
 
 const ContactList = () => {
-  const { isLoading, data, refetch } = useGetContactsQuery();
+  const { isLoading, data } = useGetContactsQuery();
   const [deleteContact] = useDeleteContactMutation();
   const filterContact = useSelector(state => state.filter);
-
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
 
   const filtredContacts = () => {
     return data.filter(({ name }) =>
